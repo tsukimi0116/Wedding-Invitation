@@ -22,8 +22,9 @@ const Select = () => {
         } catch (error) {
             console.log(error)
         }
-
     }
+
+    const optionArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     return (
         <div className='container'>
@@ -44,16 +45,11 @@ const Select = () => {
                         value={num}
                         onChange={numHandler}>
                         <option value="#" disabled>請選擇參加人數</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
+                        {Array.isArray(optionArr) &&
+                            optionArr.map((value, index) => (
+                                <option key={index} value={value}>{value}</option>
+                            ))
+                        }
                     </select>
                 </label>
             </div>

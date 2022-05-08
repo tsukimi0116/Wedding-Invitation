@@ -1,22 +1,30 @@
-import React, { useState } from 'react';
+import React from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { setName, setEmail, setNum } from '../../../Features/num/info'
 import Axios from "axios"
 
 const Select = () => {
 
-    const [name, setName] = useState('')
-    const [num, setNum] = useState('#')
+    const dispath = useDispatch()
+    const name = useSelector((state) => state.info.name)
+    const email = useSelector((state) => state.info.email)
+    const num = useSelector((state) => state.info.num)
 
     const nameHandler = (event) => {
-        setName(event.target.value);
+        dispath(setName(event.target.value))
+    }
+
+    const emailHandler = (event) => {
+        dispath(setEmail(event.target.value))
     }
 
     const numHandler = (event) => {
-        setNum(event.target.value);
+        dispath(setNum(event.target.value))
     }
 
     const submitFunc = async () => {
-        const obj = { name, num }
-        const result = await Axios.post('https://sheet.best/api/sheets/dc8beae0-b981-4ad9-b2ba-d11ae4b8f9d2', obj)
+        const sheetObject = { name, email, num }
+        const result = await Axios.post('https://sheet.best/api/sheets/dc8beae0-b981-4ad9-b2ba-d11ae4b8f9d2', sheetObject)
         try {
             console.log(result)
         } catch (error) {
@@ -28,20 +36,27 @@ const Select = () => {
 
     return (
         <div className='container'>
-            <div className='first'>
-                <label htmlFor="">
-                    姓名
-                    <input
-                        value={name}
-                        onChange={nameHandler}
-                        type="text" />
-                </label>
+            <div className='nameWrapper'>
+                <label htmlFor="nameInput">姓名</label>
+                <input
+                    id="nameInput"
+                    value={name}
+                    onChange={nameHandler}
+                    type="text" />
+            </div>
+            <div className='emailWrapper'>
+                <label htmlFor="emailInput">電子郵件</label>
+                <input
+                    id="emailInput"
+                    value={email}
+                    onChange={emailHandler}
+                    type="text" />
             </div>
 
             <div>
-                <label htmlFor="">
+                <label htmlFor="numWrapper">
                     參加人數
-                    <select name="num" id=""
+                    <select name="num" id="numWrapper"
                         value={num}
                         onChange={numHandler}>
                         <option value="#" disabled>請選擇參加人數</option>

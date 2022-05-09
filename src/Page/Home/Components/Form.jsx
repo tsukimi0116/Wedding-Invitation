@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { setName, setEmail, setNum } from '../../../Features/num/info'
 import Axios from "axios"
 
-const Select = () => {
+const Form = () => {
 
     const dispath = useDispatch()
     const name = useSelector((state) => state.info.name)
@@ -35,42 +35,35 @@ const Select = () => {
     const optionArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     return (
-        <div className='container'>
-            <div className='nameWrapper'>
-                <label htmlFor="nameInput">姓名</label>
+        <div className='Form'>
+            <img src="https://fakeimg.pl/280x260/" alt='' />
+            <div className='inputWrapper'>
                 <input
-                    id="nameInput"
+                    placeholder='Name'
                     value={name}
                     onChange={nameHandler}
                     type="text" />
-            </div>
-            <div className='emailWrapper'>
-                <label htmlFor="emailInput">電子郵件</label>
                 <input
-                    id="emailInput"
+                    placeholder='E-mail'
                     value={email}
                     onChange={emailHandler}
                     type="text" />
+                <select name="num" id="numWrapper"
+                    value={num}
+                    onChange={numHandler}>
+                    <option value="#" disabled>請選擇參加人數</option>
+                    {Array.isArray(optionArr) &&
+                        optionArr.map((value, index) => (
+                            <option key={index} value={value}>{value}</option>
+                        ))
+                    }
+                </select>
+                <textarea name="" id="" cols="30" rows="10"></textarea>
+                <button onClick={submitFunc}>submit</button>
             </div>
 
-            <div>
-                <label htmlFor="numWrapper">
-                    參加人數
-                    <select name="num" id="numWrapper"
-                        value={num}
-                        onChange={numHandler}>
-                        <option value="#" disabled>請選擇參加人數</option>
-                        {Array.isArray(optionArr) &&
-                            optionArr.map((value, index) => (
-                                <option key={index} value={value}>{value}</option>
-                            ))
-                        }
-                    </select>
-                </label>
-            </div>
-            <button onClick={submitFunc}>submit</button>
         </div>
     )
 }
 
-export default Select
+export default Form

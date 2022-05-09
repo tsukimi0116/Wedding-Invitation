@@ -3,7 +3,7 @@ import React from 'react'
 const Main = () => {
     return (
         <div className='Main'>
-            <h1>1231321</h1>
+            <img src="https://fakeimg.pl/860x550/" alt='' />
         </div>
     )
 }

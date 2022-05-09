@@ -1,11 +1,17 @@
-import React from 'react';
-import Select from './Select';
+import React from 'react'
+import Navbar from './Navbar'
+import Main from './Main'
+import Select from './Select'
 import '../Stylesheets/Home.css'
 
 const Home = () => {
 
     return (
-        <Select />
+        <div>
+            <Navbar />
+            <Main />
+            <Select />
+        </div>
     )
 }
 

@@ -1,6 +1,26 @@
-.container{
-    height: 100vh;
+.Navbar{
+    z-index: 1300;
+    top: 0;
+    position: fixed;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    width: 100vw;
+    height: 80px;
+    border: 1px black solid;
+    h1{
+        margin-left: 100px;
+    }
+    ul{
+        margin-right: 100px;
+        display: flex;
+        li{
+            cursor: pointer;
+            list-style: none;
+            padding: 10px 20px 0 20px;
+        }
+    }
+}
+.Main{
+    height: 100vh;
+    background-color: #c9b3b3;
 }

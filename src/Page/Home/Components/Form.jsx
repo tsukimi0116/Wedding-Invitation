@@ -2,6 +2,9 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setName, setEmail, setNum } from '../../../Features/num/info'
 import Axios from "axios"
+import { TreeSelect } from 'antd'
+
+const { TreeNode } = TreeSelect
 
 const Form = () => {
 
@@ -18,8 +21,8 @@ const Form = () => {
         dispath(setEmail(event.target.value))
     }
 
-    const numHandler = (event) => {
-        dispath(setNum(event.target.value))
+    const numHandler = (value) => {
+        dispath(setNum(value))
     }
 
     const submitFunc = async () => {
@@ -48,19 +51,30 @@ const Form = () => {
                     value={email}
                     onChange={emailHandler}
                     type="text" />
-                <select name="num" id="numWrapper"
+                <TreeSelect
+                    showSearch
+                    style={{ width: '220px', backgroundColor: '#d5c5c5' }}
                     value={num}
-                    onChange={numHandler}>
-                    <option value="#" disabled>請選擇參加人數</option>
-                    {Array.isArray(optionArr) &&
-                        optionArr.map((value, index) => (
-                            <option key={index} value={value}>{value}</option>
-                        ))
-                    }
-                </select>
+                    dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+                    defaultValue="#"
+                    allowClear
+                    treeDefaultExpandAll
+                    onChange={numHandler}
+                >
+                    <TreeNode value="#" title="請選擇人數" disabled>
+                        {Array.isArray(optionArr) &&
+                            optionArr.map((value, index) => (
+                                // <option key={index} value={value}>{value}</option>
+                                <TreeNode key={value} value={value} title={index} />
+                            ))
+                        }
+                    </TreeNode>
+                </TreeSelect>
+
                 <textarea name="" id="" cols="30" rows="10"></textarea>
                 <button onClick={submitFunc}>submit</button>
             </div>
+
 
         </div>
     )

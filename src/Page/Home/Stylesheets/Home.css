@@ -1,14 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Cardo&family=Great+Vibes&display=swap");
 .Navbar {
-  background-color: #c9b3b3;
+  background-color: white;
   z-index: 1300;
   top: 0;
   position: fixed;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   width: 100vw;
   height: 80px;
 }
@@ -28,7 +30,7 @@
 .Navbar ul li {
   cursor: pointer;
   list-style: none;
-  padding: 20px;
+  margin: 30px 50px 0 50px;
 }
 
 .Main {
@@ -45,6 +47,32 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.Main .title {
+  width: 800px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.Main .title span {
+  font-size: 42px;
+  font-family: 'Great Vibes', cursive;
+  color: white;
+}
+
+.Main .title p {
+  font: normal normal normal 80px/1.4em futura-lt-w01-book,futura-lt-w05-book,sans-serif;
+  color: white;
 }
 
 .Memories, .Memories2 {
@@ -99,79 +127,5 @@
 
 .Memories2 .textAreaShadow2 {
   left: 0;
-}
-
-.Form {
-  width: 100vw;
-  height: 80vh;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-.Form .inputWrapper {
-  width: 230px;
-  height: 430px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-
-.Form .inputWrapper input {
-  border: none;
-  padding-left: 10px;
-  background: #d5c5c5;
-  margin: 5px;
-  height: 35px;
-  line-height: 35px;
-  opacity: 0.75;
-}
-
-.Form .inputWrapper input:hover {
-  background: #c9b3b3;
-}
-
-.Form .inputWrapper input::-webkit-input-placeholder {
-  color: black;
-}
-
-.Form .inputWrapper input:-ms-input-placeholder {
-  color: black;
-}
-
-.Form .inputWrapper input::-ms-input-placeholder {
-  color: black;
-}
-
-.Form .inputWrapper input::placeholder {
-  color: black;
-}
-
-.Form .inputWrapper input:nth-of-type(1) {
-  width: 220px;
-}
-
-.Form .inputWrapper input:nth-of-type(2) {
-  width: 220px;
-}
-
-.Form .inputWrapper select {
-  height: 35px;
-  width: 220px;
-  margin: 5px;
 }
 /*# sourceMappingURL=Home.css.map */

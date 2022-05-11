@@ -39,7 +39,6 @@ const Form = () => {
 
     return (
         <div className='Form'>
-            <img src="https://fakeimg.pl/280x260/" alt='' />
             <div className='inputWrapper'>
                 <input
                     placeholder='Name'
@@ -74,8 +73,6 @@ const Form = () => {
                 <textarea name="" id="" cols="30" rows="10"></textarea>
                 <button onClick={submitFunc}>submit</button>
             </div>
-
-
         </div>
     )
 }

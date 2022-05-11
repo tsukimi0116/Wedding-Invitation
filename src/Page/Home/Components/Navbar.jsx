@@ -11,13 +11,23 @@ const Navbar = () => {
         dispatch(setPage(pageNum))
     }
 
+    const liItem = [
+        { name: 'Home', category: 0 },
+        { name: 'Our Story', category: 1 },
+        { name: 'The Wedding', category: 2 },
+        { name: 'RSVP', category: 3 },
+    ]
+
     return (
         <nav className='Navbar'>
             <ul>
-                <li category="0" onClick={onClick}>Home</li>
-                <li category="1" onClick={onClick}>Our Story</li>
-                <li category="2" onClick={onClick}>The Wedding</li>
-                <li category="3" onClick={onClick}>RSVP</li>
+                {Array.isArray(liItem) &&
+                    liItem.map((element, index) => (
+                        <li key={index}
+                            category={element.category}
+                            onClick={onClick}>{element.name}
+                        </li>
+                    ))}
             </ul>
         </nav>
     )

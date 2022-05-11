@@ -89,6 +89,27 @@
     .textAreaShadow2{
         @extend .textAreaShadow;
         left: 0;
-
     }
+}
+.changePage-enter{
+    opacity: 0;
+}
+.changePage-enter-active{
+    opacity: 1;
+    transition: opacity 2000ms;
+
+}
+.changePage-enter-done{
+    opacity: 1;
+}
+.changePage-exit{
+    opacity: 1;
+}
+.changePage-exit-active{
+    opacity: 0;
+    transition: opacity 2000ms;
+
+}
+.changePage-exit-done{
+    opacity: 0;
 }

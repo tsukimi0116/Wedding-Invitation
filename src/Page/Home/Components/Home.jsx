@@ -8,9 +8,9 @@ import '../Stylesheets/Home.css'
 import { useSelector } from 'react-redux'
 
 const Home = () => {
-    const [render, setRender] = useState()
+    const [render, setRender] = useState(<Main />)
     const page = useSelector((state) => state.page.page)
-    const [first, setfirst] = useState(true)
+    const [first, setfirst] = useState(false)
 
     useEffect(() => {
         switch (page) {
@@ -29,13 +29,13 @@ const Home = () => {
     return (
         <div>
             <Navbar />
-            {/* <CSSTransition
+            <CSSTransition
                 in={first}
-                timeout={1000}
-            > */}
-            {/* <Main /> */}
-            {render}
-            {/* </CSSTransition> */}
+                timeout={2000}
+                classNames="changePage"
+            >
+                {render}
+            </CSSTransition>
         </div>
     )
 }

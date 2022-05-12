@@ -1,22 +1,16 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
-import { setPage } from '../../../Features/nav/nav'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
 
-    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const onClick = (event) => {
-        let pageNum = event.target.attributes.category.value
-        dispatch(setPage(pageNum))
+        let pageName = event.target.attributes.category.value
+        navigate(`/${pageName}`)
     }
 
-    const liItem = [
-        { name: 'Home', category: 0 },
-        { name: 'Our Story', category: 1 },
-        { name: 'The Wedding', category: 2 },
-        { name: 'RSVP', category: 3 },
-    ]
+    const liItem = ['Home', 'Our Story', 'The Wedding', 'RSVP']
 
     return (
         <nav className='Navbar'>
@@ -24,8 +18,8 @@ const Navbar = () => {
                 {Array.isArray(liItem) &&
                     liItem.map((element, index) => (
                         <li key={index}
-                            category={element.category}
-                            onClick={onClick}>{element.name}
+                            category={element}
+                            onClick={onClick}>{element}
                         </li>
                     ))}
             </ul>

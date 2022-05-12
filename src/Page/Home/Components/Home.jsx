@@ -28,7 +28,6 @@ const Home = () => {
 
     return (
         <div>
-            <Navbar />
             <CSSTransition
                 in={first}
                 timeout={2000}

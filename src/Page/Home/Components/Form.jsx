@@ -1,8 +1,9 @@
 import React from 'react'
+import Axios from "axios"
 import { useSelector, useDispatch } from 'react-redux'
 import { setName, setEmail, setNum } from '../../../Features/num/info'
-import Axios from "axios"
 import { TreeSelect } from 'antd'
+import AnimatedPage from '../../Animation/AnimatedPage'
 
 const { TreeNode } = TreeSelect
 
@@ -38,42 +39,44 @@ const Form = () => {
     const optionArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 
     return (
-        <div className='Form'>
-            <div className='inputWrapper'>
-                <input
-                    placeholder='Name'
-                    value={name}
-                    onChange={nameHandler}
-                    type="text" />
-                <input
-                    placeholder='E-mail'
-                    value={email}
-                    onChange={emailHandler}
-                    type="text" />
-                <TreeSelect
-                    showSearch
-                    style={{ width: '220px', backgroundColor: '#d5c5c5' }}
-                    value={num}
-                    dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
-                    defaultValue="#"
-                    allowClear
-                    treeDefaultExpandAll
-                    onChange={numHandler}
-                >
-                    <TreeNode value="#" title="請選擇人數" disabled>
-                        {Array.isArray(optionArr) &&
-                            optionArr.map((value, index) => (
-                                // <option key={index} value={value}>{value}</option>
-                                <TreeNode key={value} value={value} title={index} />
-                            ))
-                        }
-                    </TreeNode>
-                </TreeSelect>
+        <AnimatedPage>
+            <div className='Form'>
+                <div className='inputWrapper'>
+                    <input
+                        placeholder='Name'
+                        value={name}
+                        onChange={nameHandler}
+                        type="text" />
+                    <input
+                        placeholder='E-mail'
+                        value={email}
+                        onChange={emailHandler}
+                        type="text" />
+                    <TreeSelect
+                        showSearch
+                        style={{ width: '220px', backgroundColor: '#d5c5c5' }}
+                        value={num}
+                        dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+                        defaultValue="#"
+                        allowClear
+                        treeDefaultExpandAll
+                        onChange={numHandler}
+                    >
+                        <TreeNode value="#" title="請選擇人數" disabled>
+                            {Array.isArray(optionArr) &&
+                                optionArr.map((value, index) => (
+                                    // <option key={index} value={value}>{value}</option>
+                                    <TreeNode key={value} value={value} title={value} />
+                                ))
+                            }
+                        </TreeNode>
+                    </TreeSelect>
 
-                <textarea name="" id="" cols="30" rows="10"></textarea>
-                <button onClick={submitFunc}>submit</button>
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                    <button onClick={submitFunc}>submit</button>
+                </div>
             </div>
-        </div>
+        </AnimatedPage>
     )
 }
 

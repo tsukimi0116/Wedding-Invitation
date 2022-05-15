@@ -20,6 +20,7 @@ const App = () => {
       <AnimatePresence exitBeforeEnter>
         <Routes key={location.pathname} location={location}>
           <Route path="/" element={<Main />} exact />
+          <Route path="/Wedding-Invitation" element={<Main />} exact />
           <Route path="/Home" element={<Main />} exact />
           <Route path="/Our%20Story" element={<Memories />} exact />
           <Route path="/The%20Wedding" element={<Memories2 />} exact />

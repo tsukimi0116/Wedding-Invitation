@@ -1,14 +1,14 @@
 import React from 'react';
 import {AnimatePresence} from 'framer-motion'
 import {Routers} from "./Router";
-import Navbar from './Components/Navbar';
+import Nav from './Components/Nav';
 import './StyleSheets/Main.scss'
 
 const App = () => {
 
     return (
         <>
-            <Navbar/>
+            <Nav/>
             <AnimatePresence exitBeforeEnter>
                 {/*<Routes key={location.pathname} location={location}>*/}
                 <Routers/>

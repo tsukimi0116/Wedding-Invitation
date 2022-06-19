@@ -1,4 +1,3 @@
-import React from 'react'
 import {AnimatedPage} from "../Animation";
 
 export const Main = () => {

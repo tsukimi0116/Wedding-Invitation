@@ -1,4 +1,3 @@
-import React from 'react';
 import {AnimatedPage} from "../Animation";
 import {Title} from "./Components/Title"
 import {Info} from "./Components/Info"

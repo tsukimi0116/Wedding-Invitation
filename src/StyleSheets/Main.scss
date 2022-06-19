@@ -22,20 +22,23 @@
   ul{
     margin-right: 100px;
     display: flex;
-    li{
+    a{
       cursor: pointer;
       list-style: none;
       margin: 30px 50px 0 50px;
+      color: black;
     }
   }
 }
-.Main{
-  padding-top: 80px;
-  width: 100%;
+.main{
+  margin-top: 80px;
+  width: 100vw;
   height: 100vh;
-  background-color: #c9b3b3;
+  background: url('../Assets/indexBG.jpg') no-repeat center center;
+  background-size: cover;
+  overflow-x: hidden;
   @include flexjcc();
-  .title{
+  &__title{
     width: 800px;
     flex-wrap: wrap;
     @include flexjcc();
@@ -50,47 +53,45 @@
     }
   }
 }
-.Memories{
-  margin-top: 15vh;
+.story{
   position: relative;
-  width: 100%;
-  height: 70vh;
-  padding-left: 100px;
-  @include flexjcc();
-  .MemoriesImage{
-    margin-right: 30px;
-  }
-  .textArea{
-    width: 30vw;
-    height: 360px;
-    padding: 20px;
-    white-space: wrap;
+  width: 100vw;
+  background-color: #E9FBFC;
+  &__title{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 30vh;
     p{
-      margin-bottom: 20px;
+      font-size: 36px;
+      letter-spacing: 0.05em;
+      font: normal normal normal 36px/1.4em Great Vibes,cursive;
+      margin-bottom: -20px;
     }
+    img{
+      transform: rotate(10deg);
+    }
+  }
+  .info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    &__block{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 360px;
+      margin: 0 100px;
+      &--text{
+        margin-top:20px;
+        text-align: center;
+      }
+    }
+  }
+}
 
-  }
-  .textAreaShadow{
-    z-index: -1;
-    position: absolute;
-    width: 50%;
-    height: 70vh;
-    right: 0;
-    background-color: #f7f4f4;
-  }
-}
-.Memories2{
-  @extend .Memories;
-  padding-left: 0;
-  padding-right: 100px;
-  .Memories2Image{
-    margin-left: 30px;
-  }
-  .textAreaShadow2{
-    @extend .textAreaShadow;
-    left: 0;
-  }
-}
 .changePage-enter{
   opacity: 0;
 }

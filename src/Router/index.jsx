@@ -16,11 +16,11 @@ export const Routers = () => {
             element: <Main/>
         },
         {
-            path:"/Our%20Story",
+            path:"/Story",
             element: <Story/>
         },
         {
-            path:"/The%20Wedding",
+            path:"/Wedding",
             element: <Wedding/>
         },
         {

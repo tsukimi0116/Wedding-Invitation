@@ -1,28 +1,62 @@
 @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Cardo&family=Great+Vibes&display=swap');
+
 @mixin flexjcc {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.Nav{
+@mixin rwd {
+  @media (max-width: 1199px) {
+    @content
+  }
+}
+
+@mixin ipad {
+  @media (max-width: 650px) {
+    @content
+  }
+}
+
+@mixin phone {
+  @media (max-width: 428px) {
+    @content
+  }
+}
+
+@mixin iphone8plus {
+  @media (max-height: 736px) {
+    @content
+  }
+}
+
+@mixin iphoneSE {
+  @media (max-height: 667px) {
+    @content
+  }
+}
+
+.Nav {
   background-color: white;
   z-index: 1300;
   top: 0;
-  position: fixed;
+  position: sticky;
   display: flex;
   justify-content: center;
   width: 100vw;
   height: 80px;
-  h1{
+
+  h1 {
     padding: 10px;
     margin-left: 100px;
   }
-  ul{
+
+  ul {
     margin-right: 100px;
     display: flex;
-    a{
+
+    a {
       cursor: pointer;
       list-style: none;
       margin: 30px 50px 0 50px;
@@ -30,70 +64,139 @@
     }
   }
 }
-.main{
-  margin-top: 80px;
+
+@keyframes mainpage {
+  from {
+    transform: translateY(-40px);
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.main {
   width: 100vw;
   height: 100vh;
   background: url('../Assets/indexBG.jpg') no-repeat center center;
   background-size: cover;
   overflow-x: hidden;
+  animation: mainpage 2s;
+
   @include flexjcc();
-  &__title{
+
+  &__title {
     width: 800px;
     flex-wrap: wrap;
+
     @include flexjcc();
-    span{
+
+    span {
       font-size: 42px;
       font-family: 'Great Vibes', cursive;
       color: white;
     }
-    p{
-      font: normal normal normal 80px/1.4em futura-lt-w01-book,futura-lt-w05-book,sans-serif;
+
+    p {
+      font: normal normal normal 80px/1.4em futura-lt-w01-book, futura-lt-w05-book, sans-serif;
       color: white;
+      @include ipad() {
+        text-align: center;
+        font-size: 3em;
+      }
     }
   }
 }
-.story{
+
+.story {
   position: relative;
   width: 100vw;
   background-color: #E9FBFC;
-  &__title{
+
+  &__title {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: 30vh;
-    p{
+    padding-top: 10vh;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 2s;
+
+    p {
       font-size: 36px;
       letter-spacing: 0.05em;
-      font: normal normal normal 36px/1.4em Great Vibes,cursive;
+      font: normal normal normal 36px/1.4em Great Vibes, cursive;
       margin-bottom: -20px;
     }
-    img{
+
+    img {
       transform: rotate(10deg);
     }
   }
-  .info{
+
+  .info {
     margin-top: 30px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     height: 80vh;
-    &__block{
+    flex-wrap: wrap;
+    @include rwd() {
+      height: 110vh;
+    }
+    @include ipad() {
+      height: 120vh;
+    }
+    @include iphone8plus() {
+      height: 140vh;
+    }
+    @include iphoneSE() {
+      height: 160vh;
+    }
+
+    &__block {
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 400px;
       margin: 0 100px;
-      &--text{
-        margin-top:20px;
+      @include rwd() {
+        margin-bottom: 100px;
+      }
+
+      &:first-child {
+        transform: translateX(-30px);
+        transition: all 1.5s;
+        opacity: 0;
+      }
+
+      &:last-child {
+        transform: translateX(30px);
+        transition: all 1.5s;
+        opacity: 0;
+      }
+
+      &--img {
+        img {
+          @include rwd() {
+            width: 300px;
+          }
+        }
+      }
+
+      &--text {
+        margin-top: 20px;
         text-align: center;
         height: 160px;
-        p{
-          font:normal normal normal 17px/1.4em futura-lt-w01-light,futura-lt-w05-light,sans-serif;
+
+        p {
+          font: normal normal normal 17px/1.4em futura-lt-w01-light, futura-lt-w05-light, sans-serif;
           letter-spacing: 0.35em;
         }
-        span{
+
+        span {
           letter-spacing: 0.05em;
         }
       }
@@ -101,25 +204,134 @@
   }
 }
 
-.changePage-enter{
+.wedding {
+  width: 100vw;
+  margin: auto;
+  text-align: center;
+  letter-spacing: 0.05em;
+  height: 120vh;
+  background-color: #E9FBFC;
+  @include iphone8plus() {
+    height: 140vh;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  &__title {
+    @extend .story__title;
+    padding-top: 10vh;
+  }
+
+  .info {
+    width: 100vw;
+    margin: 0 auto;
+
+    &__time {
+      margin-bottom: 70px;
+      transform: translateX(-30px);
+      transition: all 1.5s;
+      opacity: 0;
+
+      p {
+        margin-bottom: 20px;
+      }
+    }
+
+    &__place {
+      margin-bottom: 5vh;
+      transform: translateX(30px);
+      transition: all 1.5s;
+      opacity: 0;
+
+      p {
+        margin-bottom: 20px;
+      }
+    }
+
+    &__invite {
+      margin-bottom: 10vh;
+
+      &-button {
+        background: rgb(123, 99, 146);
+        height: 50px;
+        width: 100px;
+        color: white;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      &-form {
+        opacity: 1;
+        margin: auto;
+        display: flex;
+        width: 300px;
+        flex-wrap: wrap;
+        justify-content: center;
+        flex-direction: column;
+        transition: 1s all;
+        button {
+          margin-top: 20px;
+        }
+      }
+    }
+
+    &__transition {
+      width: 100vw;
+      height: 100vh;
+      background-image: url('../Assets/transitionBG.jpg');
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      background-position: center center;
+      overflow-x: hidden;
+      @include phone() {
+        height: 275px;
+        background: url('../Assets/transitionBG.jpg') no-repeat center center;
+        background-size: contain;
+        overflow-x: hidden;
+      }
+    }
+  }
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+#showOpacity{
+  animation: show 1s;
+}
+
+.changePage-enter {
   opacity: 0;
 }
-.changePage-enter-active{
+
+.changePage-enter-active {
   opacity: 1;
   transition: opacity 2000ms;
 
 }
-.changePage-enter-done{
+
+.changePage-enter-done {
   opacity: 1;
 }
-.changePage-exit{
+
+.changePage-exit {
   opacity: 1;
 }
-.changePage-exit-active{
+
+.changePage-exit-active {
   opacity: 0;
   transition: opacity 2000ms;
 
 }
-.changePage-exit-done{
+
+.changePage-exit-done {
   opacity: 0;
 }

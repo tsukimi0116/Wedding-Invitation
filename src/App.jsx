@@ -8,11 +8,9 @@ const App = () => {
 
     return (
         <>
-            <Nav/>
+            {/*<Nav/>*/}
             <AnimatePresence exitBeforeEnter>
-                {/*<Routes key={location.pathname} location={location}>*/}
                 <Routers/>
-                {/*</Routes>*/}
             </AnimatePresence>
         </>
     );

@@ -7,15 +7,16 @@ export const Title = () => {
 
     window.addEventListener('scroll', () => {
         let scroll = window.scrollY;
-        if (scroll > 200) {
+        // console.log(scroll)
+        if (scroll > 1250) {
             storyTitle.current.style.opacity = 1;
             storyTitle.current.style.transform = "translateY(0)";
         }
     })
 
     return (
-        <div ref={storyTitle} className='story__title'>
-            <p>Our Story</p>
+        <div ref={storyTitle} className='wedding__title'>
+            <p>Big Day</p>
             <img src={Flower} alt=""/>
         </div>
     )

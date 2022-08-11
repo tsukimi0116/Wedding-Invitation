@@ -1,65 +1,111 @@
-import React from 'react'
+import {useState, useRef} from 'react'
 import Axios from "axios"
-import { TreeSelect } from 'antd'
-import AnimatedPage from '../Animation/AnimatedPage'
+import {Form, Input, Select, Button, message} from 'antd'
 
-const { TreeNode } = TreeSelect
+const {Option} = Select;
 
-const Form = () => {
+export const RsvpForm = () => {
 
+    const [buttonLoading, setButtonLoading] = useState(false);
 
-    // const submitFunc = async () => {
-    //     const sheetObject = { name, email, num }
-    //     const result = await Axios.post('https://sheet.best/api/sheets/dc8beae0-b981-4ad9-b2ba-d11ae4b8f9d2', sheetObject)
-    //     try {
-    //         console.log(result)
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-    // }
+    const submitFunc = async (value) => {
+        setButtonLoading(true);
+        let notFillIn = false;
+        let checkData = Object.entries(value)
+        checkData.forEach(elm => {
+            if (elm[1] === undefined || elm[1] === "#") {
+                notFillIn = true;
+            }
+        })
 
-    // const optionArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+        if (notFillIn) {
+            message.warn("請將表單填寫完畢(╬▔皿▔)╯")
+            setButtonLoading(false);
+            return;
+        }
+
+        try {
+            message.loading("正在送出表單，請稍後(｡･∀･)ﾉﾞ")
+            await Axios.post('https://sheet.best/api/sheets/dc8beae0-b981-4ad9-b2ba-d11ae4b8f9d2', value);
+        } catch (error) {
+            message.error("表單送出失敗（；´д｀）ゞ")
+        } finally {
+            message.success("表單送出成功ヾ(•ω•`)o")
+            setButtonLoading(false);
+        }
+    }
 
     return (
-        <AnimatedPage>
-            {/*<div className='Form'>*/}
-            {/*    <div className='inputWrapper'>*/}
-            {/*        <input*/}
-            {/*            placeholder='Name'*/}
-            {/*            value={name}*/}
-            {/*            onChange={nameHandler}*/}
-            {/*            type="text" />*/}
-            {/*        <input*/}
-            {/*            placeholder='E-mail'*/}
-            {/*            value={email}*/}
-            {/*            onChange={emailHandler}*/}
-            {/*            type="text" />*/}
-            {/*        <TreeSelect*/}
-            {/*            showSearch*/}
-            {/*            style={{ width: '220px', backgroundColor: '#d5c5c5' }}*/}
-            {/*            value={num}*/}
-            {/*            dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}*/}
-            {/*            defaultValue="#"*/}
-            {/*            allowClear*/}
-            {/*            treeDefaultExpandAll*/}
-            {/*            onChange={numHandler}*/}
-            {/*        >*/}
-            {/*            <TreeNode value="#" title="請選擇人數" disabled>*/}
-            {/*                {Array.isArray(optionArr) &&*/}
-            {/*                    optionArr.map((value, index) => (*/}
-            {/*                        // <option key={index} value={value}>{value}</option>*/}
-            {/*                        <TreeNode key={value} value={value} title={value} />*/}
-            {/*                    ))*/}
-            {/*                }*/}
-            {/*            </TreeNode>*/}
-            {/*        </TreeSelect>*/}
+        <div id="showOpacity">
+            <Form
+                className="info__invite-form"
+                onFinish={(value) => submitFunc(value)}
+            >
+                <Form.Item
+                    label="姓名"
+                    name="name"
+                    rules={[
+                        {
+                            required: true,
+                            message: '請輸入姓名!',
+                        },
+                    ]}
+                >
+                    <Input/>
+                </Form.Item>
 
-            {/*        <textarea name="" id="" cols="30" rows="10"></textarea>*/}
-            {/*        <button onClick={submitFunc}>submit</button>*/}
-            {/*    </div>*/}
-            {/*</div>*/}
-        </AnimatedPage>
+                <Form.Item
+                    label="Email"
+                    name="email"
+                    rules={[
+                        {
+                            required: true,
+                            message: '請輸入Email!',
+                        },
+                        {
+                            pattern: /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/,
+                            message: '請輸入正確格式!'
+                        }
+                    ]}
+                >
+                    <Input/>
+                </Form.Item>
+
+                <Form.Item
+                    label="參加人數(含填表人)"
+                    name="num"
+                    initialValue="#"
+                    rules={[
+                        {
+                            required: true,
+                            message: '請選擇參加人數!',
+                        }
+                    ]}
+                >
+                    <Select>
+                        <Option value="#" disabled>請選擇參加人數</Option>
+                        <Option value="1">1</Option>
+                        <Option value="2">2</Option>
+                        <Option value="3">3</Option>
+                        <Option value="4">4</Option>
+                        <Option value="5">5</Option>
+                        <Option value="6">6</Option>
+                        <Option value="7">7</Option>
+                        <Option value="8">8</Option>
+                        <Option value="9">9</Option>
+                        <Option value="10">10</Option>
+                    </Select>
+                </Form.Item>
+
+                <Form.Item>
+                    <Button
+                        htmlType="submit"
+                        className="info__invite-button"
+                        loading={buttonLoading}
+                    >送出</Button>
+                </Form.Item>
+            </Form>
+        </div>
+
     )
 }
-
-export default Form
